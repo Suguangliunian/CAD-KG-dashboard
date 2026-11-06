@@ -33,7 +33,7 @@
 
 仓库配套工作流 `.github/workflows/cad-dashboard-pages.yml` 仅上传 `cad_dashboard/`。
 
-仓库设置：**Settings → Pages → Build and deployment → Source → GitHub Actions**。当前默认分支为 `cadquery`；推送该分支的页面变更后自动发布，也可在 Actions 中手动执行 `Deploy CAD dashboard`。
+仓库设置：**Settings → Pages → Build and deployment → Source → GitHub Actions**。公开发布仓库为 `Suguangliunian/CAD-KG-dashboard`，默认分支为 `main`；推送该分支的页面变更后自动发布，也可在 Actions 中手动执行 `Deploy CAD dashboard`。
 
 预期地址为 `https://suguangliunian.github.io/CAD-KG-dashboard/`；是否已上线以工作流成功和实际 HTTP 检查为准。仓库可见性与 Pages 发布源是两个设置。工作流不会把其他研究目录打包到页面。
 
