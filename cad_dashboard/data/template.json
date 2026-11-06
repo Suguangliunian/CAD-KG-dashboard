@@ -1,0 +1,66 @@
+{
+  "schema": "cad-kg-dashboard/v1",
+  "isDemo": false,
+  "title": "我的 CAD 对照实验",
+  "description": "填写数据集版本、实验条件和 pass/fail/unknown 的具体判定规则。",
+  "metricDefinition": "填写 CD 的单位、距离定义、归一化、采样数，以及 IoU 的计算方式。",
+  "provenance": "填写运行 ID、代码版本或来源哈希。",
+  "methods": [
+    {
+      "id": "baseline",
+      "name": "Baseline",
+      "revision": "待填写"
+    },
+    {
+      "id": "ours",
+      "name": "Ours",
+      "revision": "待填写"
+    }
+  ],
+  "samples": [
+    {
+      "id": "SAMPLE-001",
+      "title": "待填写的样本",
+      "category": "待分类",
+      "description": "填写输入任务与约束。",
+      "methods": {
+        "baseline": {
+          "status": "unknown",
+          "metrics": {
+            "cd": null,
+            "iou": null,
+            "seconds": null
+          },
+          "message": "尚未评测",
+          "steps": [
+            {
+              "label": "最终模型",
+              "code": "# 在这里填写实际代码",
+              "geometry": null,
+              "evidence": []
+            }
+          ],
+          "assets": []
+        },
+        "ours": {
+          "status": "unknown",
+          "metrics": {
+            "cd": null,
+            "iou": null,
+            "seconds": null
+          },
+          "message": "尚未评测",
+          "steps": [
+            {
+              "label": "最终模型",
+              "code": "# 在这里填写实际代码",
+              "geometry": null,
+              "evidence": []
+            }
+          ],
+          "assets": []
+        }
+      }
+    }
+  ]
+}

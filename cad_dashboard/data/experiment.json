@@ -1,0 +1,484 @@
+{
+  "schema": "cad-kg-dashboard/v1",
+  "isDemo": true,
+  "title": "CAD-KG / Demo collection",
+  "description": "当前为通用页面框架。4 个交互示例由程序构造，示例状态仅用于体验筛选；未接入训练、推理或评测数据。",
+  "metricDefinition": "Chamfer、IoU 和耗时均未提供。真实实验接入时需记录 CD 的采样数、单位、归一化及距离定义。",
+  "provenance": "示例生成器：tools/generate_demo.py；三维示意：viewer.js。",
+  "methods": [
+    {
+      "id": "baseline",
+      "name": "Baseline",
+      "revision": "example A"
+    },
+    {
+      "id": "ours",
+      "name": "Ours",
+      "revision": "example B"
+    }
+  ],
+  "samples": [
+    {
+      "id": "DEMO-001",
+      "title": "法兰连接件",
+      "category": "尺寸约束",
+      "description": "观察中心通孔与凸台的尺寸差异。旋转任一模型可联动另一侧，点击下方步骤查看构造过程。",
+      "methods": {
+        "baseline": {
+          "status": "fail",
+          "metrics": {
+            "cd": null,
+            "iou": null,
+            "seconds": null
+          },
+          "message": "仅用于演示界面，尚无真实评测结果。",
+          "steps": [
+            {
+              "label": "创建草图",
+              "code": "# 界面示例代码；不是实验执行记录\nimport cadquery as cq\n\npart = cq.Workplane(\"XY\").circle(24)",
+              "geometry": {
+                "kind": "demo",
+                "shape": "flange",
+                "variant": "original",
+                "stage": 0
+              },
+              "evidence": [
+                "来源：浏览器内程序生成的示例几何。",
+                "代码片段和模型用于界面演示，尚未执行 CAD 验证；没有真实日志或检索证据。"
+              ]
+            },
+            {
+              "label": "拉伸成型",
+              "code": "# 界面示例代码；不是实验执行记录\nimport cadquery as cq\n\npart = cq.Workplane(\"XY\").circle(24)\npart = part.extrude(5)",
+              "geometry": {
+                "kind": "demo",
+                "shape": "flange",
+                "variant": "original",
+                "stage": 1
+              },
+              "evidence": [
+                "来源：浏览器内程序生成的示例几何。",
+                "代码片段和模型用于界面演示，尚未执行 CAD 验证；没有真实日志或检索证据。"
+              ]
+            },
+            {
+              "label": "添加特征",
+              "code": "# 界面示例代码；不是实验执行记录\nimport cadquery as cq\n\npart = cq.Workplane(\"XY\").circle(24)\npart = part.extrude(5)\npart = part.faces(\">Z\").workplane().hole(10)",
+              "geometry": {
+                "kind": "demo",
+                "shape": "flange",
+                "variant": "original",
+                "stage": 2
+              },
+              "evidence": [
+                "来源：浏览器内程序生成的示例几何。",
+                "代码片段和模型用于界面演示，尚未执行 CAD 验证；没有真实日志或检索证据。"
+              ]
+            },
+            {
+              "label": "最终模型",
+              "code": "# 界面示例代码；不是实验执行记录\nimport cadquery as cq\n\npart = cq.Workplane(\"XY\").circle(24)\npart = part.extrude(5)\npart = part.faces(\">Z\").workplane().hole(10)\n# 凸台和安装孔的几何在预览中示意\nresult = part",
+              "geometry": {
+                "kind": "demo",
+                "shape": "flange",
+                "variant": "original",
+                "stage": 3
+              },
+              "evidence": [
+                "来源：浏览器内程序生成的示例几何。",
+                "代码片段和模型用于界面演示，尚未执行 CAD 验证；没有真实日志或检索证据。"
+              ]
+            }
+          ],
+          "assets": []
+        },
+        "ours": {
+          "status": "pass",
+          "metrics": {
+            "cd": null,
+            "iou": null,
+            "seconds": null
+          },
+          "message": "仅用于演示界面，尚无真实评测结果。",
+          "steps": [
+            {
+              "label": "创建草图",
+              "code": "# 界面示例代码；不是实验执行记录\nimport cadquery as cq\n\npart = cq.Workplane(\"XY\").circle(24)",
+              "geometry": {
+                "kind": "demo",
+                "shape": "flange",
+                "variant": "corrected",
+                "stage": 0
+              },
+              "evidence": [
+                "来源：浏览器内程序生成的示例几何。",
+                "代码片段和模型用于界面演示，尚未执行 CAD 验证；没有真实日志或检索证据。"
+              ]
+            },
+            {
+              "label": "拉伸成型",
+              "code": "# 界面示例代码；不是实验执行记录\nimport cadquery as cq\n\npart = cq.Workplane(\"XY\").circle(24)\npart = part.extrude(5)",
+              "geometry": {
+                "kind": "demo",
+                "shape": "flange",
+                "variant": "corrected",
+                "stage": 1
+              },
+              "evidence": [
+                "来源：浏览器内程序生成的示例几何。",
+                "代码片段和模型用于界面演示，尚未执行 CAD 验证；没有真实日志或检索证据。"
+              ]
+            },
+            {
+              "label": "添加特征",
+              "code": "# 界面示例代码；不是实验执行记录\nimport cadquery as cq\n\npart = cq.Workplane(\"XY\").circle(24)\npart = part.extrude(5)\npart = part.faces(\">Z\").workplane().hole(16)",
+              "geometry": {
+                "kind": "demo",
+                "shape": "flange",
+                "variant": "corrected",
+                "stage": 2
+              },
+              "evidence": [
+                "来源：浏览器内程序生成的示例几何。",
+                "代码片段和模型用于界面演示，尚未执行 CAD 验证；没有真实日志或检索证据。"
+              ]
+            },
+            {
+              "label": "最终模型",
+              "code": "# 界面示例代码；不是实验执行记录\nimport cadquery as cq\n\npart = cq.Workplane(\"XY\").circle(24)\npart = part.extrude(5)\npart = part.faces(\">Z\").workplane().hole(16)\n# 凸台和安装孔的几何在预览中示意\nresult = part",
+              "geometry": {
+                "kind": "demo",
+                "shape": "flange",
+                "variant": "corrected",
+                "stage": 3
+              },
+              "evidence": [
+                "来源：浏览器内程序生成的示例几何。",
+                "代码片段和模型用于界面演示，尚未执行 CAD 验证；没有真实日志或检索证据。"
+              ]
+            }
+          ],
+          "assets": []
+        }
+      }
+    },
+    {
+      "id": "DEMO-002",
+      "title": "四孔安装板",
+      "category": "孔位与布局",
+      "description": "对照安装板的孔位布局和板厚。两侧模型共享坐标与缩放，适合观察相对尺寸。",
+      "methods": {
+        "baseline": {
+          "status": "pass",
+          "metrics": {
+            "cd": null,
+            "iou": null,
+            "seconds": null
+          },
+          "message": "仅用于演示界面，尚无真实评测结果。",
+          "steps": [
+            {
+              "label": "创建草图",
+              "code": "# 界面示例代码；不是实验执行记录\nimport cadquery as cq\n\npart = cq.Workplane(\"XY\").rect(48, 34)",
+              "geometry": {
+                "kind": "demo",
+                "shape": "plate",
+                "variant": "original",
+                "stage": 0
+              },
+              "evidence": [
+                "来源：浏览器内程序生成的示例几何。",
+                "代码片段和模型用于界面演示，尚未执行 CAD 验证；没有真实日志或检索证据。"
+              ]
+            },
+            {
+              "label": "拉伸成型",
+              "code": "# 界面示例代码；不是实验执行记录\nimport cadquery as cq\n\npart = cq.Workplane(\"XY\").rect(48, 34)\npart = part.extrude(10)",
+              "geometry": {
+                "kind": "demo",
+                "shape": "plate",
+                "variant": "original",
+                "stage": 1
+              },
+              "evidence": [
+                "来源：浏览器内程序生成的示例几何。",
+                "代码片段和模型用于界面演示，尚未执行 CAD 验证；没有真实日志或检索证据。"
+              ]
+            },
+            {
+              "label": "添加特征",
+              "code": "# 界面示例代码；不是实验执行记录\nimport cadquery as cq\n\npart = cq.Workplane(\"XY\").rect(48, 34)\npart = part.extrude(10)\npart = part.faces(\">Z\").workplane().hole(15)",
+              "geometry": {
+                "kind": "demo",
+                "shape": "plate",
+                "variant": "original",
+                "stage": 2
+              },
+              "evidence": [
+                "来源：浏览器内程序生成的示例几何。",
+                "代码片段和模型用于界面演示，尚未执行 CAD 验证；没有真实日志或检索证据。"
+              ]
+            },
+            {
+              "label": "最终模型",
+              "code": "# 界面示例代码；不是实验执行记录\nimport cadquery as cq\n\npart = cq.Workplane(\"XY\").rect(48, 34)\npart = part.extrude(10)\npart = part.faces(\">Z\").workplane().hole(15)\n# 四个安装孔的布局在预览中示意\nresult = part",
+              "geometry": {
+                "kind": "demo",
+                "shape": "plate",
+                "variant": "original",
+                "stage": 3
+              },
+              "evidence": [
+                "来源：浏览器内程序生成的示例几何。",
+                "代码片段和模型用于界面演示，尚未执行 CAD 验证；没有真实日志或检索证据。"
+              ]
+            }
+          ],
+          "assets": []
+        },
+        "ours": {
+          "status": "pass",
+          "metrics": {
+            "cd": null,
+            "iou": null,
+            "seconds": null
+          },
+          "message": "仅用于演示界面，尚无真实评测结果。",
+          "steps": [
+            {
+              "label": "创建草图",
+              "code": "# 界面示例代码；不是实验执行记录\nimport cadquery as cq\n\npart = cq.Workplane(\"XY\").rect(48, 34)",
+              "geometry": {
+                "kind": "demo",
+                "shape": "plate",
+                "variant": "corrected",
+                "stage": 0
+              },
+              "evidence": [
+                "来源：浏览器内程序生成的示例几何。",
+                "代码片段和模型用于界面演示，尚未执行 CAD 验证；没有真实日志或检索证据。"
+              ]
+            },
+            {
+              "label": "拉伸成型",
+              "code": "# 界面示例代码；不是实验执行记录\nimport cadquery as cq\n\npart = cq.Workplane(\"XY\").rect(48, 34)\npart = part.extrude(6)",
+              "geometry": {
+                "kind": "demo",
+                "shape": "plate",
+                "variant": "corrected",
+                "stage": 1
+              },
+              "evidence": [
+                "来源：浏览器内程序生成的示例几何。",
+                "代码片段和模型用于界面演示，尚未执行 CAD 验证；没有真实日志或检索证据。"
+              ]
+            },
+            {
+              "label": "添加特征",
+              "code": "# 界面示例代码；不是实验执行记录\nimport cadquery as cq\n\npart = cq.Workplane(\"XY\").rect(48, 34)\npart = part.extrude(6)\npart = part.faces(\">Z\").workplane().hole(15)",
+              "geometry": {
+                "kind": "demo",
+                "shape": "plate",
+                "variant": "corrected",
+                "stage": 2
+              },
+              "evidence": [
+                "来源：浏览器内程序生成的示例几何。",
+                "代码片段和模型用于界面演示，尚未执行 CAD 验证；没有真实日志或检索证据。"
+              ]
+            },
+            {
+              "label": "最终模型",
+              "code": "# 界面示例代码；不是实验执行记录\nimport cadquery as cq\n\npart = cq.Workplane(\"XY\").rect(48, 34)\npart = part.extrude(6)\npart = part.faces(\">Z\").workplane().hole(15)\n# 四个安装孔的布局在预览中示意\nresult = part",
+              "geometry": {
+                "kind": "demo",
+                "shape": "plate",
+                "variant": "corrected",
+                "stage": 3
+              },
+              "evidence": [
+                "来源：浏览器内程序生成的示例几何。",
+                "代码片段和模型用于界面演示，尚未执行 CAD 验证；没有真实日志或检索证据。"
+              ]
+            }
+          ],
+          "assets": []
+        }
+      }
+    },
+    {
+      "id": "DEMO-003",
+      "title": "直角支撑架",
+      "category": "结构与支撑",
+      "description": "检查底板、立板及支撑构造。此处的判定状态为筛选交互示例，与几何有效性无关。",
+      "methods": {
+        "baseline": {
+          "status": "fail",
+          "metrics": {
+            "cd": null,
+            "iou": null,
+            "seconds": null
+          },
+          "message": "仅用于演示界面，尚无真实评测结果。",
+          "steps": [
+            {
+              "label": "创建草图",
+              "code": "# 界面示例代码；不是实验执行记录\nimport cadquery as cq\n\nbase = cq.Workplane(\"XY\").rect(42, 34)",
+              "geometry": {
+                "kind": "demo",
+                "shape": "bracket",
+                "variant": "original",
+                "stage": 0
+              },
+              "evidence": [
+                "来源：浏览器内程序生成的示例几何。",
+                "代码片段和模型用于界面演示，尚未执行 CAD 验证；没有真实日志或检索证据。"
+              ]
+            },
+            {
+              "label": "拉伸成型",
+              "code": "# 界面示例代码；不是实验执行记录\nimport cadquery as cq\n\nbase = cq.Workplane(\"XY\").rect(42, 34)\nbase = base.extrude(4)",
+              "geometry": {
+                "kind": "demo",
+                "shape": "bracket",
+                "variant": "original",
+                "stage": 1
+              },
+              "evidence": [
+                "来源：浏览器内程序生成的示例几何。",
+                "代码片段和模型用于界面演示，尚未执行 CAD 验证；没有真实日志或检索证据。"
+              ]
+            },
+            {
+              "label": "添加特征",
+              "code": "# 界面示例代码；不是实验执行记录\nimport cadquery as cq\n\nbase = cq.Workplane(\"XY\").rect(42, 34)\nbase = base.extrude(4)\nupright_height = 21",
+              "geometry": {
+                "kind": "demo",
+                "shape": "bracket",
+                "variant": "original",
+                "stage": 2
+              },
+              "evidence": [
+                "来源：浏览器内程序生成的示例几何。",
+                "代码片段和模型用于界面演示，尚未执行 CAD 验证；没有真实日志或检索证据。"
+              ]
+            },
+            {
+              "label": "最终模型",
+              "code": "# 界面示例代码；不是实验执行记录\nimport cadquery as cq\n\nbase = cq.Workplane(\"XY\").rect(42, 34)\nbase = base.extrude(4)\nupright_height = 21\n# 立板和支撑结构在预览中示意\nresult = base",
+              "geometry": {
+                "kind": "demo",
+                "shape": "bracket",
+                "variant": "original",
+                "stage": 3
+              },
+              "evidence": [
+                "来源：浏览器内程序生成的示例几何。",
+                "代码片段和模型用于界面演示，尚未执行 CAD 验证；没有真实日志或检索证据。"
+              ]
+            }
+          ],
+          "assets": []
+        },
+        "ours": {
+          "status": "fail",
+          "metrics": {
+            "cd": null,
+            "iou": null,
+            "seconds": null
+          },
+          "message": "仅用于演示界面，尚无真实评测结果。",
+          "steps": [
+            {
+              "label": "创建草图",
+              "code": "# 界面示例代码；不是实验执行记录\nimport cadquery as cq\n\nbase = cq.Workplane(\"XY\").rect(42, 34)",
+              "geometry": {
+                "kind": "demo",
+                "shape": "bracket",
+                "variant": "corrected",
+                "stage": 0
+              },
+              "evidence": [
+                "来源：浏览器内程序生成的示例几何。",
+                "代码片段和模型用于界面演示，尚未执行 CAD 验证；没有真实日志或检索证据。"
+              ]
+            },
+            {
+              "label": "拉伸成型",
+              "code": "# 界面示例代码；不是实验执行记录\nimport cadquery as cq\n\nbase = cq.Workplane(\"XY\").rect(42, 34)\nbase = base.extrude(4)",
+              "geometry": {
+                "kind": "demo",
+                "shape": "bracket",
+                "variant": "corrected",
+                "stage": 1
+              },
+              "evidence": [
+                "来源：浏览器内程序生成的示例几何。",
+                "代码片段和模型用于界面演示，尚未执行 CAD 验证；没有真实日志或检索证据。"
+              ]
+            },
+            {
+              "label": "添加特征",
+              "code": "# 界面示例代码；不是实验执行记录\nimport cadquery as cq\n\nbase = cq.Workplane(\"XY\").rect(42, 34)\nbase = base.extrude(4)\nupright_height = 33",
+              "geometry": {
+                "kind": "demo",
+                "shape": "bracket",
+                "variant": "corrected",
+                "stage": 2
+              },
+              "evidence": [
+                "来源：浏览器内程序生成的示例几何。",
+                "代码片段和模型用于界面演示，尚未执行 CAD 验证；没有真实日志或检索证据。"
+              ]
+            },
+            {
+              "label": "最终模型",
+              "code": "# 界面示例代码；不是实验执行记录\nimport cadquery as cq\n\nbase = cq.Workplane(\"XY\").rect(42, 34)\nbase = base.extrude(4)\nupright_height = 33\n# 立板和支撑结构在预览中示意\nresult = base",
+              "geometry": {
+                "kind": "demo",
+                "shape": "bracket",
+                "variant": "corrected",
+                "stage": 3
+              },
+              "evidence": [
+                "来源：浏览器内程序生成的示例几何。",
+                "代码片段和模型用于界面演示，尚未执行 CAD 验证；没有真实日志或检索证据。"
+              ]
+            }
+          ],
+          "assets": []
+        }
+      }
+    },
+    {
+      "id": "DEMO-004",
+      "title": "待补充的实验样本",
+      "category": "缺失数据",
+      "description": "演示缺少模型和评测记录时的页面状态。缺失的指标与证据保持为空，等待后续接入。",
+      "methods": {
+        "baseline": {
+          "status": "unknown",
+          "metrics": {
+            "cd": null,
+            "iou": null,
+            "seconds": null
+          },
+          "message": "仅用于演示界面，尚无真实评测结果。",
+          "steps": [],
+          "assets": []
+        },
+        "ours": {
+          "status": "unknown",
+          "metrics": {
+            "cd": null,
+            "iou": null,
+            "seconds": null
+          },
+          "message": "仅用于演示界面，尚无真实评测结果。",
+          "steps": [],
+          "assets": []
+        }
+      }
+    }
+  ]
+}

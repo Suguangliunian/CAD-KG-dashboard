@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="CAD-KG 实验对照台：模型、操作步骤、评测指标与证据的配对浏览。">
+  <meta name="theme-color" content="#10151d">
+  <title>CAD-KG · 实验对照台</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
+</head>
+<body>
+  <a class="skip-link" href="#workspace">跳到样本对照</a>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="CAD-KG 首页"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="m16 3 12 7v13l-12 7L4 23V10L16 3Z" stroke="currentColor" stroke-width="1.7"/><path d="m4 10 12 7 12-7M16 17v13M10 6.5l12 7v7l-6 3.5" stroke="currentColor" stroke-width="1.7"/></svg><strong>CAD-KG</strong><span class="brand-divider"></span><span class="brand-subtitle">Research workspace</span></a>
+    <nav class="topnav" aria-label="页面导航"><a class="active" href="#workspace">样本对照</a><a href="#results">结果总表</a><a href="#protocol">数据说明</a></nav>
+    <a class="repo-link" href="https://github.com/Suguangliunian/CAD-KG-dashboard" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+  </header>
+  <main>
+    <section class="page-heading">
+      <div><p class="eyebrow"><span class="live-dot"></span> EXPERIMENT EXPLORER <span class="version">v1.0</span></p><h1>每一个样本，都有迹可循<span class="heading-dot">.</span></h1><p class="subtitle">在同一视角下比较 CAD 模型，逐步检查操作、指标与证据。</p></div>
+      <div class="heading-actions"><button id="template" class="button secondary"><span aria-hidden="true">↓</span> 数据模板</button><button id="import" class="button primary"><span aria-hidden="true">＋</span> 导入实验</button><input type="file" id="file-input" accept=".json,application/json" hidden></div>
+    </section>
+    <div id="mode-banner" class="mode-banner"><span class="demo-tag">交互示例</span><p id="mode-text">当前为程序生成的界面示例，尚未接入实验结果；所有评测指标留空。</p><button id="reset-demo" class="text-button" hidden>返回示例</button><span id="dataset-name" class="dataset-name">CAD-KG / Demo collection</span></div>
+    <div id="error" class="error-banner" role="alert" hidden></div>
+    <section class="summary-grid" aria-label="实验汇总">
+      <article class="summary-card"><div class="summary-label">评测样本 <span class="stat-icon">▦</span></div><div class="summary-value" id="stat-total">—</div><p id="stat-total-note">等待接入真实数据</p></article>
+      <article class="summary-card"><div class="summary-label"><span id="left-summary-label">Baseline 通过率</span><i class="method-dot left"></i></div><div class="summary-value" id="stat-left">—</div><p id="stat-left-note">按完整样本分母统计</p></article>
+      <article class="summary-card"><div class="summary-label"><span id="right-summary-label">Ours 通过率</span><i class="method-dot right"></i></div><div class="summary-value" id="stat-right">—</div><p id="stat-right-note">按完整样本分母统计</p></article>
+      <article class="summary-card"><div class="summary-label">共同可评几何 <span class="stat-icon">◇</span></div><div class="summary-value" id="stat-paired">—</div><p id="stat-paired-note">双方均有 CD 记录的样本</p></article>
+    </section>
+    <section id="workspace" class="workspace-section">
+      <div class="section-heading"><div><span class="section-index">01</span><h2>样本对照</h2><span id="sample-count" class="count-chip">0 个示例</span></div><p class="microcopy">配对浏览 · 同步视角 · 证据可追溯</p></div>
+      <div class="filters"><label class="search-box"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="m13 13 4 4" stroke="currentColor" stroke-width="1.5"/></svg><input id="search" type="search" placeholder="搜索样本 ID、名称或描述" aria-label="搜索样本"></label><label class="select-wrap">类型<select id="category"><option value="all">全部类型</option></select></label><label class="select-wrap">结果<select id="outcome"><option value="all">全部结果</option><option value="right-only">仅右侧通过</option><option value="left-only">仅左侧通过</option><option value="both-pass">双方通过</option><option value="both-fail">双方失败</option><option value="unknown">含未裁定</option></select></label><button id="clear-filters" class="text-button">重置筛选</button></div>
+      <div class="workbench">
+        <aside class="sample-panel"><div class="sample-panel-title"><span>样本目录</span><span id="filtered-count">00 / 00</span></div><div id="sample-list" class="sample-list" aria-label="样本列表"></div><div class="sample-panel-footer"><span class="live-dot"></span><span id="collection-status">界面示例 · 非实验结果</span></div></aside>
+        <div class="comparison-panel">
+          <div id="empty-state" class="empty-state" hidden><span>⌕</span><h3>没有匹配的样本</h3><p>调整筛选条件，或导入包含样本的实验文件。</p><button id="empty-reset" class="button secondary">重置筛选</button></div>
+          <div id="sample-content">
+            <div class="sample-heading"><div><p id="sample-id" class="eyebrow">SAMPLE / —</p><h3 id="sample-title">正在载入…</h3></div><div class="sample-navigation"><span id="sample-position">—</span><button id="previous" class="icon-button" aria-label="上一个样本">←</button><button id="next" class="icon-button" aria-label="下一个样本">→</button></div></div>
+            <p id="sample-description" class="sample-description"></p>
+            <div class="view-toolbar"><div class="segmented" role="group" aria-label="模型显示方式"><button data-view="solid" class="selected" aria-pressed="true">实体</button><button data-view="wire" aria-pressed="false">线框</button></div><div class="view-actions"><label class="check-label"><input id="sync-camera" type="checkbox" checked> 联动视角</label><button id="reset-camera" class="text-button">↺ 重置视角</button></div></div>
+            <div class="comparison-grid">
+              <article class="model-card baseline"><header><div><i class="method-dot left"></i><h4 id="left-name">Baseline</h4><span id="left-revision" class="revision"></span></div><span id="left-status" class="status unknown">未裁定</span></header><div id="left-viewer" class="viewer" aria-label="左侧模型，可拖拽旋转和滚轮缩放"><span class="viewer-watermark">BASELINE</span><div class="viewer-placeholder" hidden></div><span class="axis-label">Z ↑ <span>XY</span></span><span class="viewer-hint">拖动旋转 · 滚轮缩放</span></div><div class="metrics-row"><div><span>Chamfer ↓</span><strong id="left-cd">—</strong></div><div><span>IoU ↑</span><strong id="left-iou">—</strong></div><div><span>耗时 / s</span><strong id="left-time">—</strong></div></div><p id="left-message" class="model-message"></p></article>
+              <article class="model-card ours"><header><div><i class="method-dot right"></i><h4 id="right-name">Ours</h4><span id="right-revision" class="revision"></span></div><span id="right-status" class="status unknown">未裁定</span></header><div id="right-viewer" class="viewer" aria-label="右侧模型，可拖拽旋转和滚轮缩放"><span class="viewer-watermark">OURS</span><div class="viewer-placeholder" hidden></div><span class="axis-label">Z ↑ <span>XY</span></span><span class="viewer-hint">拖动旋转 · 滚轮缩放</span></div><div class="metrics-row"><div><span>Chamfer ↓</span><strong id="right-cd">—</strong></div><div><span>IoU ↑</span><strong id="right-iou">—</strong></div><div><span>耗时 / s</span><strong id="right-time">—</strong></div></div><p id="right-message" class="model-message"></p></article>
+            </div>
+            <section class="steps-panel"><div class="steps-heading"><div><span class="tiny-label">OPERATION TRACE</span><h4>操作步骤</h4></div><div><span id="step-position" class="muted">—</span><button id="play-steps" class="text-button">▶ 自动浏览</button></div></div><div id="steps" class="steps-list"></div><p id="alignment-note" class="trace-note">按步骤位置并排查看；不同方法的相同步骤序号不代表相同操作。</p></section>
+            <section class="detail-panel"><div class="detail-tabs" role="tablist" aria-label="样本详情"><button id="tab-code" role="tab" aria-selected="true" aria-controls="detail-code" data-tab="code" class="active">代码与操作</button><button id="tab-evidence" role="tab" aria-selected="false" aria-controls="detail-evidence" data-tab="evidence" tabindex="-1">证据记录</button><button id="tab-assets" role="tab" aria-selected="false" aria-controls="detail-assets" data-tab="assets" tabindex="-1">文件下载</button><button id="copy-link" class="copy-link" title="复制当前样本链接">↗ 分享样本</button></div><div id="detail-code" role="tabpanel" aria-labelledby="tab-code" class="code-grid"><div><div class="code-label" id="left-code-label">Baseline</div><pre><code id="left-code"></code></pre></div><div><div class="code-label" id="right-code-label">Ours</div><pre><code id="right-code"></code></pre></div></div><div id="detail-evidence" role="tabpanel" aria-labelledby="tab-evidence" hidden class="evidence-content"></div><div id="detail-assets" role="tabpanel" aria-labelledby="tab-assets" hidden class="assets-content"></div></section>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="results" class="results-section"><div class="section-heading"><div><span class="section-index">02</span><h2>结果总表</h2><span class="muted" id="table-count"></span></div><button id="export-csv" class="text-button">↓ 导出 CSV</button></div><div class="table-wrapper"><table><thead><tr><th>样本</th><th>类型</th><th id="left-table-label">Baseline</th><th id="right-table-label">Ours</th><th>左侧 CD ↓</th><th>右侧 CD ↓</th><th>操作</th></tr></thead><tbody id="result-rows"></tbody></table><p id="table-empty" class="table-empty" hidden>暂无样本</p></div><div class="table-footer"><span id="table-caption">示例仅用于展示交互，指标不参与统计。</span><div><button id="page-prev" class="icon-button" aria-label="上一页">←</button><span id="page-label">1 / 1</span><button id="page-next" class="icon-button" aria-label="下一页">→</button></div></div></section>
+    <details id="protocol" class="protocol"><summary><span><span class="section-index">03</span>数据与评测口径</span><span class="muted">展开查看 ＋</span></summary><div class="protocol-body"><div><h3>当前数据</h3><p id="protocol-description">界面示例。</p><p id="metric-definition"></p></div><div><h3>接入你的实验</h3><p>下载 JSON 模板，填写样本、两种方法、操作步骤及模型文件地址，再点击“导入实验”。本地导入仅在当前浏览器内读取。</p><a href="./README.md">查看数据协议与发布说明 ↗</a></div><div><h3>如何阅读结果</h3><p>“通过”按导入文件的判定规则展示；未裁定保留在完整分母内。缺失指标显示为 —。形状视图使用共同包围盒定位，不将每个模型分别缩放。</p><p id="provenance"></p></div></div></details>
+    <footer><span class="footer-brand">◇ CAD-KG <span>Experiment Explorer</span></span><span>从结果到过程，从模型到证据。</span><a href="https://github.com/Suguangliunian/CAD-KG-dashboard" target="_blank" rel="noopener noreferrer">View repository ↗</a></footer>
+  </main>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
